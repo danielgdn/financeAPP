@@ -20,5 +20,9 @@
         "husky": "^8.0.3",
         "lint-staged": "^15.2.10",
         "prettier": "^3.3.3"
+    },
+    "dependencies": {
+        "dotenv": "^16.4.5",
+        "express": "^4.21.0"
     }
 }
