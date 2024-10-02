@@ -18,5 +18,3 @@ export class PostgresCreateUserRepository {
         return results[0]
     }
 }
-
-PostgresCreateUserRepository.execute()
