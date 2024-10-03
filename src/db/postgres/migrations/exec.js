@@ -9,6 +9,7 @@ const __dirname = path.dirname(__filename)
 
 const execMigrations = async () => {
     const client = await pool.connect()
+
     try {
         const filePath = path.join(__dirname, '01-init.sql')
         const script = fs.readFileSync(filePath, 'utf-8')
