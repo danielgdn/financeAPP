@@ -1,7 +1,5 @@
 import { CreateUserUseCase } from '../use-cases/create-user.js'
-import validator from 'validator'
 import { badrequest, created, serverError } from './helpers.js'
-import { postgresHelper } from '../db/postgres/helper.js'
 
 export class CreateUserController {
     async execute(httpRequest) {
@@ -22,23 +20,6 @@ export class CreateUserController {
                         errorMessage: `Missing param: ${field}`,
                     })
                 }
-            }
-
-            const emailExist = await postgresHelper.query(
-                'SELECT email FROM users WHERE email = $1 LIMIT 1',
-                [params.email],
-            )
-
-            if (emailExist.length > 0) {
-                return badrequest({ errorMessage: 'Email já cadastrado' })
-            }
-
-            const emailIsValid = validator.isEmail(params.email)
-
-            if (!emailIsValid) {
-                return badrequest({
-                    errorMessage: `email is not valid. Please provide a valid one.`,
-                })
             }
 
             if (params.password.length < 6) {
