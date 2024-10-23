@@ -1,4 +1,4 @@
-import { postgresHelper } from '../../db/postgres/helper'
+import { postgresHelper } from '../../db/postgres/helper.js'
 
 export class PostgresUpdateUserRepository {
     async execute(userId, updateUserParams) {
@@ -7,7 +7,7 @@ export class PostgresUpdateUserRepository {
 
         Object.keys(updateUserParams).forEach((key) => {
             updateFields.push(`${key} = $${updateValues.length + 1}`)
-            updateValues.pus(updateUserParams[key])
+            updateValues.push(updateUserParams[key])
         })
 
         updateValues.push(userId)
